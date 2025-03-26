@@ -34,7 +34,6 @@ has_cleared_d_drive = False
 
 # Count the number of items in the D: drive
 d_drive_items_count = sum(len(files) for _, _, files in os.walk(d_drive_path))
-d_drive_items_count += sum(len(dirs) for _, dirs, _ in os.walk(d_drive_path))
 d_drive_items_count -= 1  # Subtract 1 to exclude the root directory
 
 # If the D: drive is not empty, clear it
@@ -47,7 +46,7 @@ if d_drive_items_count > 0:
             try:
                 os.remove(file_path)  # Delete the file
             except Exception as e:
-                print(f'Failed to delete file {file_path}: {e}')
+                print(f'Failed to delete {file_path}: {e}')
         for name in dirs:
             dir_path = os.path.join(root, name)
             try:
