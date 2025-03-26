@@ -2,18 +2,15 @@
 
 import subprocess, sys;
 
-#Upgrade pip
-print("Upgrading pip...");
-subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip"]);
-
-print("Installing Required winshell...");
-subprocess.check_call([sys.executable, "-m", "pip", "install", "winshell"]);
-
-print("Installing Required pypiwin32...");
-subprocess.check_call([sys.executable, "-m", "pip", "install", "pypiwin32"]);
+# Remove dynamic pip installation
+print("All required dependencies are already bundled with the executable.")
 
 # Importing Required Libraries
-import winshell;
+try:
+    import winshell
+except ImportError:
+    print("The 'winshell' module is not installed. Please install it using 'pip install winshell'.")
+    sys.exit(1);
 
 # Empty Recycle Bin
 
@@ -52,9 +49,7 @@ for root, dirs, files in os.walk(d_drive_path, topdown=False):
 
 print("D: Drive Cleared Successfully!");
 
-print("Installing tkinter")
-subprocess.check_call([sys.executable, "-m", "pip", "install", "tk"]);
-
+# tkinter is already bundled with the executable.
 import tkinter as tk
 from tkinter import messagebox as mbox
 
@@ -63,7 +58,7 @@ def self_destruct():
     root.destroy()
 
 root = tk.Tk()
-root.withdraw() # Hide the main window
+root.withdraw()  # Hide the main window
 root.after(10000, self_destruct)
 mbox.showinfo("Recycle Bin Cleared", "Recycle Bin and D: Drive Cleared Successfully!", parent=root)
 root.mainloop()
