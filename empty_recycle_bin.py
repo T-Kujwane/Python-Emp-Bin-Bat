@@ -10,18 +10,18 @@ try:
     import winshell
 except ImportError:
     print("The 'winshell' module is not installed. Please install it using 'pip install winshell'.")
-    sys.exit(1);
+    sys.exit(1)
 
 # access recycle bin
-recycle_bin = winshell.recycle_bin();
+recycle_bin = winshell.recycle_bin()
 
-has_cleared_recycle_bin = False;
+has_cleared_recycle_bin = False
 
-recycle_bin_items_count = len(list(recycle_bin));
+recycle_bin_items_count = len(list(recycle_bin))
 
 if recycle_bin_items_count > 0:
-    winshell.recycle_bin().empty(confirm=False, show_progress=False, sound=False);
-    has_cleared_recycle_bin = True;
+    winshell.recycle_bin().empty(confirm=False, show_progress=False, sound=False)
+    has_cleared_recycle_bin = True
 
 # Importing libraries required to clean the D: drive
 import os
